@@ -16,7 +16,7 @@ Servers:
       Port: 8080
       IsLocalhost: true
       Endpoints:
-        - Path: /data/
+        - Path: /data
           Actions:
             - Name: GetServerData
               Method: Get
