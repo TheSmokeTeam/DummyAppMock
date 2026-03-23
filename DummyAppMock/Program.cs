@@ -7,8 +7,6 @@ using QaaS.Mocker.Servers.ConfigurationObjects;
 using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
 using QaaS.Mocker.Stubs.ConfigurationObjects;
 
-Directory.SetCurrentDirectory(AppContext.BaseDirectory);
-
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(new DataSourceBuilder()
         .Named("ServerData")
@@ -18,7 +16,7 @@ var executionBuilder = new ExecutionBuilder()
             DataArrangeOrder = DataArrangeOrder.AsciiAsc,
             FileSystem = new FileSystemConfig
             {
-                Path = "ServerData"
+                Path = Path.Combine(AppContext.BaseDirectory, "ServerData")
             }
         }))
     .CreateStub(new TransactionStubBuilder()
@@ -31,7 +29,7 @@ var executionBuilder = new ExecutionBuilder()
             Http = new HttpServerConfig
             {
                 Port = 8080,
-                IsLocalhost = false,
+                IsLocalhost = true,
                 Endpoints =
                 [
                     new HttpEndpointConfig
