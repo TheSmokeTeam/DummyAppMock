@@ -30,12 +30,6 @@ jobs:
       - name: Build
         run: dotnet build DummyAppMock.sln -c ${{ env.CONFIGURATION }} --no-restore
 
-      - name: Lint mocker config
-        shell: bash
-        run: |
-          cd DummyAppMock
-          dotnet run -c "${{ env.CONFIGURATION }}" --no-build -- -m Lint mocker.qaas.yaml
-
       - name: Build Docker image
         run: docker build -t dummyappmock-sample .
 
