@@ -10,7 +10,7 @@ using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.Ht
 
 namespace DummyAppMock;
 
-public sealed class MockerExecutionBuilderConfigurator : IExecutionBuilderConfigurator
+public sealed class MockerExecutionBuilderConfigurator
 {
     public void Configure(ExecutionBuilder executionBuilder)
     {
