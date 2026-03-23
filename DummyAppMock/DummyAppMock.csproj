@@ -13,9 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="mocker.qaas.yaml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="ServerData\**\*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
