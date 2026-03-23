@@ -12,7 +12,8 @@ Sample QaaS Mocker project for the YAML quick start.
 
 ```bash
 dotnet restore
-dotnet run --project DummyAppMock/DummyAppMock.csproj -- run mocker.qaas.yaml
+cd DummyAppMock/DummyAppMock
+dotnet run -- run mocker.qaas.yaml
 ```
 
 Then call:

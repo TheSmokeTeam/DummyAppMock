@@ -14,7 +14,7 @@ Stubs:
 Servers:
   - Http:
       Port: 8080
-      IsLocalhost: false
+      IsLocalhost: true
       Endpoints:
         - Path: /data
           Actions:
