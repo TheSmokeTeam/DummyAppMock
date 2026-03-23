@@ -4,7 +4,7 @@ COPY . .
 RUN dotnet restore DummyAppMock.sln --configfile NuGet.config
 RUN dotnet publish DummyAppMock/DummyAppMock.csproj -c Release -o /app/publish --no-restore
 
-FROM mcr.microsoft.com/dotnet/runtime:10.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "DummyAppMock.dll", "mocker.qaas.yaml"]
