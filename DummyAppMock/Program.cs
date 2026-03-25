@@ -33,6 +33,12 @@ static bool ShouldUseCodeConfiguration(string[] args, out CodeExecutionMode exec
 
     if (args.Length == 0)
     {
+        if (HasDefaultYamlConfiguration())
+        {
+            executionMode = default;
+            return false;
+        }
+
         executionMode = CodeExecutionMode.Run;
         return true;
     }
@@ -129,6 +135,11 @@ Servers:
 
     Directory.CreateDirectory(outputFolder);
     File.WriteAllText(Path.Combine(outputFolder, "template.qaas.yaml"), template + Environment.NewLine);
+}
+
+static bool HasDefaultYamlConfiguration()
+{
+    return File.Exists(Path.Combine(AppContext.BaseDirectory, "mocker.qaas.yaml"));
 }
 
 static string[] NormalizeYamlArguments(string[] args)

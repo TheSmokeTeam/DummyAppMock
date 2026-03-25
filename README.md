@@ -5,7 +5,6 @@ Sample QaaS Mocker project for the code quick start.
 ## What It Does
 
 - runs the code-defined mock in `DummyAppMock/Program.cs` when no program arguments are passed
-- runs the checked-in `DummyAppMock/mocker.qaas.yaml` when you pass `run`
 - renders the code-defined mock as YAML when you pass `template` without a file path
 - loads JSON response data from `DummyAppMock/ServerData/sample.json`
 - exposes `GET /data` on `http://127.0.0.1:8080`
@@ -25,14 +24,10 @@ Then call:
 curl http://127.0.0.1:8080/data
 ```
 
-## YAML Path
-
-```bash
-dotnet run -- run mocker.qaas.yaml
-```
-
 ## Template Check
 
 ```bash
 dotnet run -- template
 ```
+
+If you later add a YAML file to the project, pass it explicitly with `dotnet run -- run <file>` instead of relying on a no-args start.
