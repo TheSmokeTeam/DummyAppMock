@@ -1,1 +1,23 @@
-# Unused by the code-first sample.
+DataSources:
+  - Name: ServerData
+    Generator: FromFileSystem
+    GeneratorConfiguration:
+      DataArrangeOrder: AsciiAsc
+      FileSystem:
+        Path: ServerData
+
+Stubs:
+  - Name: ServerDataStub
+    Processor: ServerDataProcessor
+    DataSourceNames: [ServerData]
+
+Servers:
+  - Http:
+      Port: 8080
+      IsLocalhost: false
+      Endpoints:
+        - Path: /data
+          Actions:
+            - Name: GetServerData
+              Method: Get
+              TransactionStubName: ServerDataStub
