@@ -7,4 +7,4 @@ RUN dotnet publish DummyAppMock/DummyAppMock.csproj -c Release -o /app/publish -
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "DummyAppMock.dll", "mocker.qaas.yaml"]
+ENTRYPOINT ["dotnet", "DummyAppMock.dll", "run", "mocker.qaas.yaml"]
