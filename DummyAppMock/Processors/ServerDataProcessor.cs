@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using QaaS.Framework.SDK.DataSourceObjects;
+using QaaS.Framework.SDK.Extensions;
 using QaaS.Framework.SDK.Hooks.Processor;
 using QaaS.Framework.SDK.Session.DataObjects;
 using QaaS.Framework.SDK.Session.MetaDataObjects;
@@ -11,7 +12,7 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
     public override Data<object> Process(IImmutableList<DataSource> dataSourceList, Data<object> requestData)
     {
         var response = dataSourceList
-            .Single(dataSource => dataSource.Name == "ServerData")
+            .GetDataSourceByName("ServerData")
             .Retrieve()
             .FirstOrDefault();
 
