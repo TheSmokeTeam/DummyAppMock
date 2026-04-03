@@ -23,7 +23,7 @@ var dataSource = new DataSourceBuilder()
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
     .HookNamed(nameof(ServerDataProcessor))
-    .AddDataSourceName("ServerData");
+     .CreateDataSourceName("ServerData");
 
 var server = new ServerConfig
 {
@@ -53,6 +53,6 @@ var server = new ServerConfig
 var executionBuilder = new ExecutionBuilder()
     .CreateDataSource(dataSource)
     .CreateStub(stub)
-    .AddServer(server);
+        .CreateServer(server);
 
 new MockerRunner(executionBuilder).Run();
