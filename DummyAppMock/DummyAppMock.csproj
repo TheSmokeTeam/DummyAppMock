@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="QaaS.Common.Generators" Version="3.3.1" />
-    <PackageReference Include="QaaS.Mocker" Version="2.2.1" />
+    <PackageReference Include="QaaS.Mocker" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>
