@@ -4,10 +4,17 @@ using QaaS.Framework.SDK.Extensions;
 using QaaS.Framework.SDK.Hooks.Processor;
 using QaaS.Framework.SDK.Session.DataObjects;
 using QaaS.Framework.SDK.Session.MetaDataObjects;
+using System.ComponentModel;
 
 namespace DummyAppMock.Processors;
 
-public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfiguration>
+public record ServerDataProcessorConfig
+{
+    [Description("Status code to return"), DefaultValue("200")]
+    public int StatusCode { get; set; } = 200;
+}
+
+public class ServerDataProcessor : BaseTransactionProcessor<ServerDataProcessorConfig>
 {
     public override Data<object> Process(IImmutableList<DataSource> dataSourceList, Data<object> requestData)
     {
@@ -23,7 +30,7 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
             {
                 Http = new Http
                 {
-                    StatusCode = 200,
+                    StatusCode = Configuration.StatusCode,
                     ResponseHeaders = new Dictionary<string, string>
                     {
                         ["Content-Type"] = "application/json"
@@ -33,5 +40,3 @@ public sealed class ServerDataProcessor : BaseTransactionProcessor<NoConfigurati
         };
     }
 }
-
-public sealed record NoConfiguration;

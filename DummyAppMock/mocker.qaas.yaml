@@ -10,6 +10,8 @@ Stubs:
   - Name: ServerDataStub
     Processor: ServerDataProcessor
     DataSourceNames: [ServerData]
+    ProcessorConfiguration:
+      StatusCode: 200
 
 Servers:
   - Http:
