@@ -2,16 +2,11 @@ using DummyAppMock.Processors;
 using QaaS.Common.Generators.ConfigurationObjects.FromExternalSourceConfigurations;
 using QaaS.Common.Generators.FromExternalSourceGenerators;
 using QaaS.Framework.SDK.DataSourceObjects;
-using QaaS.Framework.SDK.Extensions;
 using QaaS.Mocker;
 using QaaS.Mocker.Servers.ConfigurationObjects;
 using QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs;
 using QaaS.Mocker.Stubs.ConfigurationObjects;
 using HttpMethod = QaaS.Mocker.Servers.ConfigurationObjects.HttpServerConfigs.HttpMethod;
-
-var bootstrapArguments = args.Length > 0 ? args : ["run", "mocker.qaas.yaml"];
-var runner = Bootstrap.New(bootstrapArguments);
-var executionBuilder = runner.ExecutionBuilders.AsSingle();
 
 var dataSource = new DataSourceBuilder()
     .Named("ServerData")
@@ -27,12 +22,8 @@ var dataSource = new DataSourceBuilder()
 
 var stub = new TransactionStubBuilder()
     .Named("ServerDataStub")
-    .Configure(new ServerDataProcessorConfig
-    {
-        StatusCode = 200
-    })
     .HookNamed(nameof(ServerDataProcessor))
-     .AddDataSourceName("ServerData");
+     .CreateDataSourceName("ServerData");
 
 var server = new ServerConfig
 {
@@ -59,9 +50,9 @@ var server = new ServerConfig
     }
 };
 
-executionBuilder
-    .AddDataSource(dataSource)
-    .AddStub(stub)
-    .AddServer(server);
+var executionBuilder = new ExecutionBuilder()
+    .CreateDataSource(dataSource)
+    .CreateStub(stub)
+    .CreateServer(server);
 
-runner.Run();
+new MockerRunner(executionBuilder).Run();
