@@ -12,7 +12,8 @@ Sample QaaS Mocker project for the code quick start.
 ## Run
 
 ```bash
-dotnet restore
+export QAAS_NUGET_SOURCE_URL=https://api.nuget.org/v3/index.json
+dotnet restore --source "$QAAS_NUGET_SOURCE_URL"
 cd DummyAppMock
 dotnet run
 ```
