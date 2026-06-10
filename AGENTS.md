@@ -21,13 +21,14 @@ The **reference QaaS.Mocker testbed**: a minimal mock HTTP server proving the YA
 
 ```powershell
 dotnet restore
-dotnet run --project DummyAppMock -- run mocker.qaas.yaml
+cd DummyAppMock
+dotnet run -- run mocker.qaas.yaml
 # then: curl http://127.0.0.1:8080/data
 ```
 
 ## Critical gotchas
 
-- Consumes **latest public** `QaaS.Mocker` + `QaaS.Common.Generators` from nuget.org — a breaking upstream release shows up here first. Pin versions when reproducing issues.
+- Pins `QaaS.Mocker` (2.2.2) + `QaaS.Common.Generators` (3.3.1) in `DummyAppMock/DummyAppMock.csproj` — bump both together when validating upstream changes; a version mismatch will surface as runtime failures.
 - YAML names are contracts: `Generator: FromFileSystem`, `Processor: ServerDataProcessor`, `TransactionStubName: ServerDataStub` must match discovered hook class names exactly.
 - Local checkouts may sit on the `yaml_configuration` branch — check the branch before comparing behavior with remote default.
 - Custom processors here are discovered via Framework assembly scanning (user-assembly tier) — namespace/class renames break YAML references silently.
